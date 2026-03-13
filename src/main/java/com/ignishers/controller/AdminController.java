@@ -146,6 +146,7 @@ public class AdminController {
 	    }
 	    if(b1.equals("Block")) {
 	    	cst.setAccountStatus(AccountStatus.SUSPENDED);
+	    	MailSender.sendMailAfterSuspention(cst);
 	    	if(userdao.updateUser(cst))
 	        	mv = new ModelAndView("amdcustomer", "msg", "Customer Blocked Successfully.");
 	        else

@@ -206,4 +206,48 @@ public static void sendMailAfterVerify(User a) {
 				throw new RuntimeException(e);
 			}
 		}
+//--------------------------------------------------------------------------------------------------------------------------
+		public static void sendMailDeposit(User a, Double amount) {
+			/* 
+			 * 
+			 * send email after deposit amount to wallet by user
+			 * 
+			 */
+				
+				
+				Properties props=new Properties();
+				props.put("mail.smtp.host", "smtp.gmail.com");
+				props.put("mail.smtp.port", "587");
+				props.put("mail.smtp.auth", "true");
+				props.put("mail.smtp.starttls.enable", "true");
+				
+				
+				
+				Session session=Session.getInstance(props, new Authenticator() {
+					@Override
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication(fromEmail, pass);
+					}
+				});
+				try {
+					Message message=new MimeMessage(session);
+					message.setFrom(new InternetAddress(fromEmail));
+					
+					message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(a.getEmail()));
+					message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("ajaysinghkhichi5@gmail.com"));
+					
+					
+					message.setSubject("Amount Credited in Wallet");
+					String msg = "<p>Dear <strong>" + a.getFirstName()+",<br>"
+							+ "<p>This Mail is to Inform You That Your<strong> Amount is Credited on you</strong>, because of Some Suspicious Activity Done By Your Account.</p>"
+							+ "<br><br><h2>Contact Us for more Information</h2><br><br><br>"
+							+ "<h1 style=\"color: #000080; font-weight: bold;\">Team Vesta<span style=\"color: #000; font-weight: normal;\">Trade</span></h1>";
+					
+					message.setContent(msg, "text/html");
+					Transport.send(message);
+					
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+			}
 }
