@@ -23,7 +23,7 @@
       <div class="col-lg-5">
         <h1>
 			<%
-      	String msg = (String)request.getAttribute("msg");
+      	String msg = (String)request.getAttribute("welcome");
       	if(msg!=null)
       		out.print(msg);
       %>

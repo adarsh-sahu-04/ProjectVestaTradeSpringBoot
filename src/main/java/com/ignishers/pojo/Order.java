@@ -29,8 +29,8 @@ public class Order {
     @Column(nullable = false)
     private Long customerId;             // FK → customers
 
-    @Column(nullable = false)
-    private Long stockId;                // FK → stocks
+    @Column(name = "stockId", nullable = false)
+    private String stockId;                // FK → stocks
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -65,7 +65,7 @@ public class Order {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Order(Long id, Long customerId, Long stockId, OrderType orderType, OrderStatus orderStatus, Integer quantity,
+	public Order(Long id, Long customerId, String stockId, OrderType orderType, OrderStatus orderStatus, Integer quantity,
 			BigDecimal pricePerShare, BigDecimal totalAmount, LocalDateTime placedAt) {
 		super();
 		this.id = id;
@@ -95,11 +95,11 @@ public class Order {
 		this.customerId = customerId;
 	}
 
-	public Long getStockId() {
+	public String getStockId() {
 		return stockId;
 	}
 
-	public void setStockId(Long stockId) {
+	public void setStockId(String stockId) {
 		this.stockId = stockId;
 	}
 

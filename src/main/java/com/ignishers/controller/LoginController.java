@@ -86,7 +86,8 @@ public class LoginController {
 	@PostMapping("/checkUser")
 	public ModelAndView checkUserCredential(
 			@RequestParam("email")String email,
-			@RequestParam("password")String pass
+			@RequestParam("password")String pass,
+			HttpSession session
 			)
 	{
 		User u = userdao.checkUserCred(email, pass);
@@ -94,13 +95,14 @@ public class LoginController {
 		List<Stock> lst = stockdao.getAllStocks();
 		if(u!=null) {
 			if(u.getRole().equals(Role.ADMIN)) {
-				
-				mv = new ModelAndView("adminhome", "msg", "Welcome Admin");
+				session.setAttribute("user", u);
+				mv = new ModelAndView("adminhome", "welcome", "Welcome Admin");
 				mv.addObject("stocks", lst);
 			}
 			if(u.getRole().equals(Role.CUSTOMER)) {
 				if(u.getAccountStatus().equals(AccountStatus.VERIFIED)) {
-					mv = new ModelAndView("customerhome", "msg", "Welcome User");
+					session.setAttribute("user", u);
+					mv = new ModelAndView("customerhome", "welcome", "Welcome User");
 					mv.addObject("stocks", lst);
 				}
 				if(u.getAccountStatus().equals(AccountStatus.PENDING))

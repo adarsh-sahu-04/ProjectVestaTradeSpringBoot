@@ -121,7 +121,7 @@
       <li class="page-item"><a class="page-link" href="#">3</a></li>
       <li class="page-item"><a class="page-link" href="#">»</a></li>
     </ul></nav>
-  </div>
+  </div>     
 </div>
 
 <%@include file="footer.jsp" %>

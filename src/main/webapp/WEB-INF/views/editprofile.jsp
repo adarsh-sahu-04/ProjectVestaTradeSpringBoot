@@ -12,15 +12,43 @@
 </head>
 <body>
 
-<%@include file="headeradmin.jsp" %>
+<%@include file="headeruser.jsp" %>
 
 
 <div class="container py-5">
-<div class="d-grid gap-2 col-6 mx-auto">
-  <a href="amdStock" class="btn btn-secondary btn-lg">Add / Update Stock</a>
-  <a href="amdStock" class="btn btn-secondary btn-lg">Delete Stock</a>
-  <a href="amdStock" class="btn btn-secondary btn-lg">Get Stock</a>
-</div>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0">Edit Profile Parameters</h4>
+        </div>
+        <div class="card-body">
+          <%
+             String msg1 = (String) request.getAttribute("msg");
+             if (msg1 != null) {
+          %>
+             <div class="alert alert-info"><%=msg1%></div>
+          <% } %>
+
+          <form action="/updateProfile" method="post">
+            
+            <div class="mb-3">
+              <label for="password" class="form-label">New Password</label>
+              <input type="password" class="form-control" name="password" id="password" required>
+            </div>
+            
+            <div class="d-grid gap-2 mt-4">
+              <button class="btn btn-primary btn-lg" type="submit">Update Password</button>
+            </div>
+          </form>
+          
+          <div class="mt-4 text-muted small text-center">
+             Notice: KYC details like PAN, Aadhar, Email, DOB, and Bank details cannot be updated online due to regulatory requirements. Please contact support.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <%@include file="footer.jsp" %>

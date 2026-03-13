@@ -26,7 +26,7 @@
                 <h2 class="heading">Account Verification</h2>
                 <% 
                 String msg1=(String) request.getAttribute("msg"); 
-                if(msg1 !=null) { 
+                if(msg1!=null) { 
                 	out.print("<div class='alert alert-info'>" + msg + "</div>");
             	}
             	%>

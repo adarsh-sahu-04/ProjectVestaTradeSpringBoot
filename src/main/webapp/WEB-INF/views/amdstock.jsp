@@ -18,7 +18,7 @@
 <div class="container py-5">
 
 <div class="d-grid gap-2 col-6 mx-auto">
-	<h2 class="heading">Update / Delete / Block Customer</h2>
+	<h2 class="heading">Add / Update / Delete Stock</h2>
 	<%
       	String msg1 = (String)request.getAttribute("msg");
       	if(msg1!=null)
