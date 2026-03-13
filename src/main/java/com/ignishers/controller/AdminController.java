@@ -84,10 +84,16 @@ public class AdminController {
 		
 		if(existingUser != null) {
 			existingUser.setAccountStatus(AccountStatus.valueOf(newStatus));
+			if(existingUser.getAccountStatus().equals(AccountStatus.VERIFIED))
+				MailSender.sendMailAfterVerify(existingUser);
+			if(existingUser.getAccountStatus().equals(AccountStatus.REJECTED))
+				MailSender.sendMailAfterRejection(existingUser);
+			if(existingUser.getAccountStatus().equals(AccountStatus.SUSPENDED))
+				MailSender.sendMailAfterSuspention(existingUser);
 			userdao.updateUser(existingUser);
-			model.addAttribute("msg", "Account status updated successfully for: " + email);
+			model.addAttribute("msg2", "Account status updated successfully for: " + email);
 		} else {
-			model.addAttribute("msg", "User not found.");
+			model.addAttribute("msg2", "User not found.");
 		}
 		
 		List<User> lst = userdao.getAllUser();

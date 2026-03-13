@@ -25,8 +25,8 @@
             <div class="d-grid gap-2 col-10 mx-auto">
                 <h2 class="heading">Account Verification</h2>
                 <% 
-                String msg1=(String) request.getAttribute("msg"); 
-                if(msg1!=null) { 
+                String msg2=(String) request.getAttribute("msg2"); 
+                if(msg2!=null) { 
                 	out.print("<div class='alert alert-info'>" + msg + "</div>");
             	}
             	%>
@@ -40,7 +40,7 @@
 	                    <th>Current Status</th>
 	                    <th>Action</th>
 	                </tr>
-	                <% List<Customer> cstList = (List<Customer>)request.getAttribute("unverifiedCustomers");
+	                <% List<Customer> cstList = (List<Customer>) request.getAttribute("unverifiedCustomers");
 	                        if(cstList == null || cstList.isEmpty()){
 	                        out.print("<tr> <td colspan='7'>No pending verification found!</td> </tr>");
 	                        }

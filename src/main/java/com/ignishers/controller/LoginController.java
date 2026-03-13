@@ -33,8 +33,9 @@ public class LoginController {
 	private CustomerDaoImpl cstdao;
 	
 	@Autowired
-	public StockDaoImpl stockdao;
-	
+	private StockDaoImpl stockdao;
+	 @Autowired
+	 private MailSender sender;
 
 	@GetMapping("/logout")
     public String logout(HttpSession session) {
@@ -122,8 +123,10 @@ public class LoginController {
 	public ModelAndView registerUser(Customer cst) throws Exception
 	{
 		ModelAndView mv = null;
-		if(cstdao.addCustomer(cst))
+		if(cstdao.addCustomer(cst)) {
+			sender.sendMailForRegister(cst);
 			mv = new ModelAndView("login", "msg", "Registration Successfull Wait for approval.");
+		}
 		else
 			mv = new ModelAndView("signup", "msg", "Registration Failed / User Already Exist!");
 		return mv;
