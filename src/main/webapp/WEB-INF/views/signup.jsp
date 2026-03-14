@@ -52,7 +52,7 @@
       		out.print(msg);
       %>
       <!-- PERSONAL DETAILS -->
-      <form action="register" method="post" enctype="multipart/form-data">
+      <form action="register" method="post">
 
         <p class="section-tag mt-2">Personal Details</p>
         <div class="row g-2">
@@ -104,11 +104,6 @@
         <div class="row g-2">
           <div class="col-12"><label class="form-label">Password *</label>
           <input type="password" name="password" class="form-control" placeholder="Min 8 characters" required minlength="8"/></div>
-        </div>
-        
-        <div class="row g-2">
-          <div class="col-12"><label class="form-label">DP *</label>
-          <input type="file" name="dp" class="form-control" required/></div>
         </div>
 
         <div class="mt-3">

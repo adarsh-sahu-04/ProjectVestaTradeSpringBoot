@@ -130,8 +130,9 @@ public class CustomerController {
 		return "wallet";		
 	}
 
-	@PostMapping("/addFunds")
-	public ModelAndView addFunds(HttpSession session, @RequestParam(value="amount", required=false, defaultValue="0") BigDecimal amount) {
+	@GetMapping("/addFunds")
+	public ModelAndView addFunds(HttpSession session, @RequestParam("amount")BigDecimal amount) 
+	{
 		User u = (User) session.getAttribute("user");
 		if (u == null || !(u instanceof Customer)) {
 			return new ModelAndView("login", "msg", "Please login first");
